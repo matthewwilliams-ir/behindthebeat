@@ -1,10 +1,15 @@
 
 class Album():
 
-    def __init__(self, title, artist, songs):
+    def __init__(self, album_id, title, artist, songs):
+        self.album_id = album_id
         self.title = title
         self.artist = artist
         self.songs = songs
+
+    @property
+    def album_id(self):
+        return self.album_id
 
     @property
     def title(self):

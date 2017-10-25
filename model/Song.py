@@ -1,10 +1,15 @@
 
 class Song():
 
-    def __init__(self, title, artist, producers):
+    def __init__(self, song_id, title, artist, producers):
+        self.song_id = song_id
         self.title = title
         self.artist = artist
         self.producers = producers
+
+    @property
+    def song_id(self):
+        return self.song_id
 
     @property
     def title(self):
