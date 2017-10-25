@@ -14,16 +14,21 @@ Options:
 """
 
 from docopt import docopt
+from apirequests.SearchRequest import SearchRequest
 import os
 
 def main():
-    access_token = 'VCjn8DtNP_UbXRNr08zsJATjBMxH41_yjAoZXnAtQjek6VdUGXc6MY4OaH8TWL5A'
+    access_token = '65OqpfrfCyG6-X29enouHpqJbnf8lir_fyjxpyhH5i96VMbUVigq4Nf822dlevLm'
     arguments = docopt(__doc__, version="behindthebeat 1.0")
 
     if (arguments['<artist>'] and arguments['--track']):
         query = arguments['<artist>'] + " " + arguments['--track']
         print query
-        
+
+        search_request = SearchRequest(query, access_token)
+        response = search_request.execute()
+        print response.json()
+
     elif (arguments['<artist>'] and arguments['--album']):
         query = arguments['<artist>'] + " " + arguments['--album']
         print query
