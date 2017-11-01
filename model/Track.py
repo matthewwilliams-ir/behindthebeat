@@ -1,5 +1,5 @@
 
-class Song():
+class Track():
 
     def __init__(self, song_id, title, artist, producers):
         self.song_id = song_id
@@ -24,4 +24,5 @@ class Song():
         return self.producers
 
     def __str__(self):
-        return self.artist + " - " + self.title + " (Prod. by." + self.producers + ")"
+        track_str = "Track: " + self.title + "\n" + "Artist: " + self.artist + "\n" + "Producers: " + self.producers
+        return track_str.encode('utf-8')

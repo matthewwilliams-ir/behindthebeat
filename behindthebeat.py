@@ -15,6 +15,7 @@ Options:
 
 from docopt import docopt
 from apirequests.SearchRequest import SearchRequest
+from apirequests.SongRequest import SongRequest
 import os
 
 def main():
@@ -23,11 +24,14 @@ def main():
 
     if (arguments['<artist>'] and arguments['--track']):
         query = arguments['<artist>'] + " " + arguments['--track']
-        print query
 
         search_request = SearchRequest(query, access_token)
-        response = search_request.execute()
-        print response.json()
+        song_id = search_request.execute()
+
+        song_request = SongRequest(song_id, access_token)
+        track = song_request.execute()
+
+        print track
 
     elif (arguments['<artist>'] and arguments['--album']):
         query = arguments['<artist>'] + " " + arguments['--album']

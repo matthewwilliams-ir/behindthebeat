@@ -16,7 +16,16 @@ class SearchRequest(GeniusRequest):
 
     def execute(self):
         try:
-            return requests.get(self.get_url(), self.get_params())
+            response = requests.get(self.get_url(), self.get_params())
+            song_id = self.transform_response(response)
+            return song_id
         except Exception as e:
             print "Error retrieving data from " + self.get_url()
             print e
+
+    def transform_response(self, response):
+        response_json = response.json()
+        search_results = response_json["response"]["hits"]
+        first_result = search_results[0]["result"]
+        song_id = first_result["id"]
+        return song_id
