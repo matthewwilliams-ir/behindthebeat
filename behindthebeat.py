@@ -31,7 +31,9 @@ def main():
         song_request = SongRequest(song_id, access_token)
         track = song_request.execute()
 
+        print ""
         print track
+        print ""
 
     elif (arguments['<artist>'] and arguments['--album']):
         query = arguments['<artist>'] + " " + arguments['--album']
